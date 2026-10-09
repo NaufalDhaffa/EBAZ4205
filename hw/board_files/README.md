@@ -7,14 +7,24 @@ and the two user LEDs as a GPIO interface.
 Source: https://github.com/XyleMora/EBAZ4205/tree/main/Documents/Board%20files (MIT, see `LICENSE-XyleMora`).
 Files are unmodified.
 
-## Use in Vivado
+## Use in Vivado (2025.x and newer)
 
-Option 1, install: copy the `ebaz4205` folder to `<Vivado install>/data/boards/board_files/` and restart Vivado.
+Vivado 2025.x keeps its data under the install root, not under `Vivado/`. For an install at
+`~/Xilinx/2025.2` the board folder is `~/Xilinx/2025.2/data/boards/`, and `board_files/` does not
+exist there by default.
 
-Option 2, no install (Tcl console or batch script):
+Option 1, no install (tested on Vivado 2025.2): in the Tcl console, or at the top of a batch script,
 
     set_param board.repoPaths [list <repo>/hw/board_files]
     set_property board_part miner.ebang.com.cn:ebaz4205:part0:1.0 [current_project]
+
+Option 2, install (default Xilinx location, not tested here):
+
+    mkdir -p ~/Xilinx/2025.2/data/boards/board_files
+    cp -r hw/board_files/ebaz4205 ~/Xilinx/2025.2/data/boards/board_files/
+
+then restart Vivado. Replace `2025.2` with your version; find the root with `which vivado`
+(`<root>/<version>/Vivado/bin/vivado`).
 
 In a block design, `apply_board_preset "1"` on the PS7 automation loads the preset.
 `hw/scripts/build_bd.tcl` does not use the board file; it sets the same PS7 values explicitly.
