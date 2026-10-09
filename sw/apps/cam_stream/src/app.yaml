@@ -1,0 +1,4 @@
+domain_path: /home/naufal/stereo_cam/sw/workspace
+app_src_dir: /home/naufal/Xilinx/2026.1/Vitis/data/embeddedsw/lib/sw_apps/empty_application
+template: empty_application
+lang: c
