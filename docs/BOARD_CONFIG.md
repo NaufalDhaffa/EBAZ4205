@@ -34,6 +34,20 @@ Only Ethernet and the two LEDs need a project `.xdc` (`hw/constraints/ethernet.x
 everything else (UART1, SD0, DDR3) is on dedicated/MIO pins configured
 entirely inside the PS7 IP, no top-level port constraints needed.
 
+## Vivado board files
+
+`hw/board_files/ebaz4205/1.0/` is the board definition `miner.ebang.com.cn:ebaz4205:part0:1.0`
+(source and license in `hw/board_files/README.md`). Its PS7 preset matches the table above.
+`hw/scripts/build_bd.tcl` does not depend on it.
+
+Install for Vivado 2025.x (tested on 2025.2): copy the `ebaz4205` folder into the xhub board store,
+
+    cp -r hw/board_files/ebaz4205 <Xilinx root>/<version>/data/xhub/boards/XilinxBoardStore/boards/Xilinx/
+
+e.g. `~/Xilinx/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/`. The old
+`<Vivado>/data/boards/board_files/` path is not scanned. A store update may remove the copy;
+re-copy it, or use `set_param board.repoPaths [list <repo>/hw/board_files]` instead.
+
 ## Ethernet (IP101GA MII, via EMIO) pin map
 
 | Signal | Zynq package pin | Note |
