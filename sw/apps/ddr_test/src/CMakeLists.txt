@@ -9,7 +9,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/UserConfig.cmake)
 
 enable_language(C ASM)
 find_package(common)
-collect(PROJECT_LIB_DEPS xilstandalone;xiltimer;lwip220)
+collect(PROJECT_LIB_DEPS xilstandalone;xiltimer;lwip220;xilffs)
 collect(PROJECT_LIB_DEPS xil)
 collect(PROJECT_LIB_DEPS gcc)
 collect(PROJECT_LIB_DEPS c)
