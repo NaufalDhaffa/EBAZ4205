@@ -33,3 +33,8 @@ set_property -dict {PACKAGE_PIN Y14 IOSTANDARD LVCMOS33} [get_ports {eth_mdio_md
 create_clock -name eth_rx_clk -period 40.0 -waveform {0 20.0} [get_ports {eth_rx_clk}]
 create_clock -name eth_tx_clk -period 40.0 -waveform {0 20.0} [get_ports {eth_tx_clk}]
 set_clock_groups -asynchronous -group [get_clocks eth_rx_clk] -group [get_clocks eth_tx_clk]
+
+# Board LEDs (PS7 EMIO GPIO[1:0], bus port "led[1:0]" in the block design),
+# from xjtuecho/EBAZ4205 template .xdc. led[0]=green(W13), led[1]=red(W14).
+set_property -dict {PACKAGE_PIN W13 IOSTANDARD LVCMOS33} [get_ports {led[0]}]
+set_property -dict {PACKAGE_PIN W14 IOSTANDARD LVCMOS33} [get_ports {led[1]}]

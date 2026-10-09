@@ -1,8 +1,8 @@
 ## General .xdc for the EBAZ4205 (XC7Z010CLG400). Reference only: not added
 ## to the Vivado project by hw/scripts/build_bd.tcl.
 ## To use a pin: uncomment its line and rename the port (after get_ports) to
-## the top-level signal name. Pins already used by the design live in
-## ethernet.xdc and camera.xdc; do not enable them twice.
+## the top-level signal name. Ethernet pins are already active in ethernet.xdc;
+## do not enable them twice.
 
 ##Clock signal
 #set_property -dict { PACKAGE_PIN N18   IOSTANDARD LVCMOS33 } [get_ports { clk }]; # Use if you have X5 Oscillator soldered on
@@ -41,7 +41,7 @@
 #set_clock_groups -asynchronous -group [get_clocks eth_rx_clk] -group [get_clocks eth_tx_clk]
 
 
-##DATA1 (camera 1)
+##DATA1
 #set_property -dict { PACKAGE_PIN A20   IOSTANDARD LVCMOS33 } [get_ports { DATA1_5 }];
 #set_property -dict { PACKAGE_PIN H16   IOSTANDARD LVCMOS33 } [get_ports { DATA1_6 }];
 #set_property -dict { PACKAGE_PIN B19   IOSTANDARD LVCMOS33 } [get_ports { DATA1_7 }];
@@ -58,7 +58,7 @@
 #set_property -dict { PACKAGE_PIN K17   IOSTANDARD LVCMOS33 } [get_ports { DATA1_20 }];
 
 
-##DATA2 (DATA2_5/6 = camera 1 reset_n/pwdn)
+##DATA2
 #set_property -dict { PACKAGE_PIN G20   IOSTANDARD LVCMOS33 } [get_ports { DATA2_5 }];
 #set_property -dict { PACKAGE_PIN J18   IOSTANDARD LVCMOS33 } [get_ports { DATA2_6 }];
 #set_property -dict { PACKAGE_PIN G19   IOSTANDARD LVCMOS33 } [get_ports { DATA2_7 }];
@@ -75,7 +75,7 @@
 #set_property -dict { PACKAGE_PIN L17   IOSTANDARD LVCMOS33 } [get_ports { DATA2_20 }];
 
 
-##DATA3 (planned camera 2)
+##DATA3
 #set_property -dict { PACKAGE_PIN M19   IOSTANDARD LVCMOS33 } [get_ports { DATA3_5 }];
 #set_property -dict { PACKAGE_PIN N20   IOSTANDARD LVCMOS33 } [get_ports { DATA3_6 }];
 #set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { DATA3_7 }];
