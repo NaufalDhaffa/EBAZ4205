@@ -9,22 +9,23 @@ Files are unmodified.
 
 ## Use in Vivado (2025.x and newer)
 
-Vivado 2025.x keeps its data under the install root, not under `Vivado/`. For an install at
-`~/Xilinx/2025.2` the board folder is `~/Xilinx/2025.2/data/boards/`, and `board_files/` does not
-exist there by default.
+Vivado 2025.x keeps boards in the xhub board store under the install root (not under `Vivado/`).
+For an install at `~/Xilinx/2025.2`:
 
-Option 1, no install (tested on Vivado 2025.2): in the Tcl console, or at the top of a batch script,
+    cp -r hw/board_files/ebaz4205 ~/Xilinx/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/
+
+Tested on Vivado 2025.2: `get_board_parts *ebaz4205*` finds it with no extra setup, no restart needed
+for batch runs (restart the GUI). Replace `2025.2` with your version; find the root with `which vivado`
+(`<root>/<version>/Vivado/bin/vivado`). A later update of the Xilinx board store may remove the copy;
+re-copy it, or use the no-install option below.
+
+No-install option (tested on Vivado 2025.2), in the Tcl console or at the top of a batch script:
 
     set_param board.repoPaths [list <repo>/hw/board_files]
+
+Then, in either case:
+
     set_property board_part miner.ebang.com.cn:ebaz4205:part0:1.0 [current_project]
-
-Option 2, install (default Xilinx location, not tested here):
-
-    mkdir -p ~/Xilinx/2025.2/data/boards/board_files
-    cp -r hw/board_files/ebaz4205 ~/Xilinx/2025.2/data/boards/board_files/
-
-then restart Vivado. Replace `2025.2` with your version; find the root with `which vivado`
-(`<root>/<version>/Vivado/bin/vivado`).
 
 In a block design, `apply_board_preset "1"` on the PS7 automation loads the preset.
 `hw/scripts/build_bd.tcl` does not use the board file; it sets the same PS7 values explicitly.
